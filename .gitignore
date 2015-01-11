@@ -1,0 +1,4 @@
+*~
+*.py[c|m]
+*.sqlite3
+venv/*
