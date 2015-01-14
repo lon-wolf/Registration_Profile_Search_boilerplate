@@ -1,0 +1,41 @@
+{% extends 'base/base1.html' %}
+{% load i18n %}
+{% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile.{% endblocktrans %}{% endblock %}
+{% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
+{% block content %}
+<div id="content">
+<div class="white-box">
+{% comment %}Dirty hack. Will use django-guardian in the future.
+{% if user.username == profile.user.username %}
+<ul id="box-nav">
+<li><a href="{% url 'profiles_profile_detail' username=request.user.username %}">{% trans "View profile" %}</a></li>
+<li><a href={% url "profiles_edit_profile" %}>{% trans "Edit details" %}</a></li>
+<li><a href={% url "auth_password_change" %}>{% trans "Change password" %}</a></li>
+
+<li><a href={% url "userena_email_change user.username" %}>{% trans "Change email" %}</a></li>
+</ul>
+{% endif %}
+{% endcomment %}
+<div id="details">
+{% if profile.first_name %}
+<p><strong>{% trans "First Name" %}</strong><br />{{ profile.first_name }}</p>
+{% endif %}
+{% if profile.last_name %}
+<p><strong>{% trans "Last Name" %}</strong><br />{{ profile.last_name }}</p>
+{% endif %}
+{% if profile.user.get_full_name %}
+<p><strong>{% trans "Name" %}</strong><br /> {{ profile.user.get_full_name }}</p>
+{% endif %}
+{% if profile.user.email %}
+<p><strong>{% trans "Email" %}</strong><br />{{ profile.user.email }}</p>
+{% endif %}
+{% if profile.qual %}
+<p><strong>{% trans "Qualification" %}</strong><br /> {{ profile.qual }}</p>
+{% endif %}
+{% if profile.phone_number %}
+<p><strong>{% trans "Phone Number" %}</strong><br /> {{ profile.phone_number }}</a></p>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

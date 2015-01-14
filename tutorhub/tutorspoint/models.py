@@ -3,8 +3,10 @@ from django.core.validators import RegexValidator
 # Create your models here.
 from django.contrib.auth.models import User
 
+
+
 class Teacher_Profile(models.Model):
-	user = models.ForeignKey(User, unique = True)
+	user = models.OneToOneField(User)
 	first_name = models.CharField("First Name", max_length = 30, blank = True)
 	last_name = models.CharField("Last Name", max_length = 30, blank = True)
 	qual = models.CharField("Qualification", max_length = 30, blank = True)
@@ -13,10 +15,9 @@ class Teacher_Profile(models.Model):
 
 	def __unicode__(self):
 		return self.first_name
-
 
 class Student_Profile(models.Model):
-	user = models.ForeignKey(User, unique=True)
+	user = models.OneToOneField(User)
 	first_name = models.CharField("First Name", max_length = 30, blank = True)
 	last_name = models.CharField("Last Name", max_length = 30, blank = True)
 	qual = models.CharField("Qualification", max_length = 30, blank = True)
@@ -25,3 +26,10 @@ class Student_Profile(models.Model):
 
 	def __unicode__(self):
 		return self.first_name
+
+class Base_Profile(models.Model):
+	user = models.OneToOneField(User)
+	user_type = models.CharField(max_length = 30, blank = True)
+
+	def __unicode__(self):
+		return self.user_type

@@ -1,0 +1,42 @@
+{% extends "base/base1.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<h1>Welcome to TUTORS POINT</h1>
+{% if user.is_authenticated %}
+		{% if user.base_profile.user_type == "teacher" %}
+		<h1>Welcome {{ user.teacher_profile.first_name }}!</h1>
+		{% else %}
+		<h1>Welcome {{ user.student_profile.first_name }}!</h1>
+		{% endif %}
+		<p><a href={% url "auth_logout" %}><h3>LOGOUT</h3></a>
+		<pre>
+
+		</pre>
+		<p> Account :</p>
+		<ul id="box-nav">
+		<li><a href="{% url 'profiles_profile_detail' username=user.username %}">View profile</a></li>
+		<li><a href={% url "profiles_edit_profile" %}>Edit details</a></li>
+		<li><a href={% url "auth_password_change" %}>Change password</a></li>
+		</ul>
+{% else %}
+<p><a href={% url "auth_login" %}><h3>LOGIN</h3></a>
+<pre>
+
+</pre>
+<p>Register here :</p>
+<form method="post" action ="{% url 'check' %}">{% csrf_token %}
+<input type="radio" name="diff" value="teacher" >Teacher<br>
+<input type="radio" name="diff" value="student">Student<br>
+<button type="submit">Submit</button>
+</form>
+{% endif %}
+<p>Looking For :</p>
+<form method="post" action ="{% url 'check' %}">{% csrf_token %}
+<input type="radio" name="diff" value="lookteacher" >Teacher<br>
+<input type="radio" name="diff" value="lookstudent">Student<br>
+<button type="submit">Submit</button>
+</form>
+<!--<h3><p>I am  <a href={% url "registration_register_t" %}>Teacher</a>  OR  <a href={% url "registration_register_s" %}>Student</a></p></h3>-->
+
+{% endblock %}
