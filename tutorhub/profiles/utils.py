@@ -29,7 +29,6 @@ def get_profile_model():
         raise SiteProfileNotAvailable
     return profile_mod
 
-
 def get_profile_form(par = " "):
     """
     Return a form class (a subclass of the default ``ModelForm``)

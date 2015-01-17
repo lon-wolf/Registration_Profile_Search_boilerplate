@@ -1,0 +1,16 @@
+{% extends "base/base1.html" %}
+
+{% block content %}
+    <form action="" method="get"> {% csrf_token %}
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% for obj in filter %}
+    	<pre>Profile details:                    First Name: {{ obj.first_name }}<br />
+        	                    Last Name: {{ obj.last_name }}<br/>
+        	                    Qualification: {{ obj.qual }}<br />
+        	                    E-mail: {{ obj.user.email }}<br />
+        	                    <a href="{% url 'profiles_profile_detail' username=obj.user.username %}">View Full Profile</a>
+        </pre>
+    {% endfor %}
+{% endblock %}

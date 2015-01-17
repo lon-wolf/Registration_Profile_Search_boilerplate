@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^student-register/',Student_RegistrationView.as_view(),
                            name='registration_register_s'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^check/', 'tutorspoint.views.check', name = 'check'),
     url(r'^profiles/', include('profiles.urls')),
-
+    url(r'^t-list/', 'tutorspoint.views.Teacher_List', name = 'teacher_list'),
+    url(r'^s-list/', 'tutorspoint.views.Student_List', name = 'student_list'),
 )

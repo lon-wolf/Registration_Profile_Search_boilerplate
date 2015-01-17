@@ -17,8 +17,7 @@ from django.contrib.auth.models import User
 
 from profiles import utils
 
-'''from tutorspoint.forms import Teacher_ProfileForm
-from tutorspoint.models import Teacher_Profile'''
+from tutorspoint.models import Teacher_Profile
 
 def create_profile(request, form_class=None, success_url=None,
                    template_name='profiles/create_profile.html',
@@ -274,17 +273,17 @@ def profile_detail(request, username, public_profile_field=None,
     
     """
     user = get_object_or_404(User, username=username)
+    u = User.objects.get(username = username)
     try:
-        if request.user.base_profile.user_type == "teacher":
-            profile_obj = request.user.teacher_profile 
-        if request.user.base_profile.user_type == "student":
-            profile_obj = request.user.student_profile
+        if u.base_profile.user_type == "teacher":
+            profile_obj = u.teacher_profile 
+        if u.base_profile.user_type == "student":
+            profile_obj = u.student_profile
     except ObjectDoesNotExist:
         raise Http404
     if public_profile_field is not None and \
        not getattr(profile_obj, public_profile_field):
         profile_obj = None
-    
     if extra_context is None:
         extra_context = {}
     context = RequestContext(request)
@@ -292,8 +291,9 @@ def profile_detail(request, username, public_profile_field=None,
         context[key] = callable(value) and value() or value
     
     return render_to_response(template_name,
-                              { 'profile': profile_obj },
+                              { 'profile': profile_obj, 'request': request },
                               context_instance=context)
+
 
 def profile_list(request, public_profile_field=None,
                  template_name='profiles/profile_list.html', **kwargs):

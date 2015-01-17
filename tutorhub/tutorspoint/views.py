@@ -1,28 +1,24 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from registration.backends.default.views import RegistrationView
-from tutorspoint.forms import Teacher_ProfileForm, Student_ProfileForm
+from tutorspoint.forms import Teacher_ProfileForm, Student_ProfileForm, TeacherFilter, StudentFilter
 from tutorspoint.models import Teacher_Profile, Student_Profile, Base_Profile
 
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 # Create your views here.
-
-def check(request):
-	diff = request.POST['diff']
-	if diff == 'teacher':
-		return HttpResponseRedirect('/teacher-register/')
-	if diff == 'student':
-		return HttpResponseRedirect('/student-register/')
-	if diff == 'lookteacher' :
-		return render(request, 'home/search_teacher.html')
-	if diff == 'lookstudent':
-		return render(request, 'home/search_student.html')
-
 #@login_required
 def index(request):
 	return render_to_response('home/index.html', context_instance=RequestContext(request))
+
+def Teacher_List(request):
+	f = TeacherFilter(request.GET, queryset = Teacher_Profile.objects.all())
+	return render_to_response('home/teacher_filter.html', {'filter':f})
+
+def Student_List(request):
+	f = StudentFilter(request.GET, queryset = Student_Profile.objects.all())
+	return render_to_response('home/student_filter.html', {'filter':f})
 
 class Teacher_RegistrationView(RegistrationView):
 	form_class = Teacher_ProfileForm

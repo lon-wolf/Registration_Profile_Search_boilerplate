@@ -25,18 +25,12 @@
 
 </pre>
 <p>Register here :</p>
-<form method="post" action ="{% url 'check' %}">{% csrf_token %}
-<input type="radio" name="diff" value="teacher" >Teacher<br>
-<input type="radio" name="diff" value="student">Student<br>
-<button type="submit">Submit</button>
-</form>
+<p>I am <a href="{% url 'registration_register_t' %}">Teacher</a> OR <a href="{% url 'registration_register_s' %}">Student</a>
 {% endif %}
-<p>Looking For :</p>
-<form method="post" action ="{% url 'check' %}">{% csrf_token %}
-<input type="radio" name="diff" value="lookteacher" >Teacher<br>
-<input type="radio" name="diff" value="lookstudent">Student<br>
-<button type="submit">Submit</button>
-</form>
-<!--<h3><p>I am  <a href={% url "registration_register_t" %}>Teacher</a>  OR  <a href={% url "registration_register_s" %}>Student</a></p></h3>-->
+<pre>
+
+</pre>
+<p>Looking For</p>
+<a href="{% url 'teacher_list' %}">Teacher</a> OR <a href="{% url 'student_list' %}">Student</a
 
 {% endblock %}
