@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-
+import settings
 
 from tutorspoint.views import Teacher_RegistrationView
 from tutorspoint.views import Student_RegistrationView
@@ -19,4 +19,6 @@ urlpatterns = patterns('',
     url(r'^profiles/', include('profiles.urls')),
     url(r'^t-list/', 'tutorspoint.views.Teacher_List', name = 'teacher_list'),
     url(r'^s-list/', 'tutorspoint.views.Student_List', name = 'student_list'),
+    url(r'^pic_folder/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT,}),
 )

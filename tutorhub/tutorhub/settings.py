@@ -54,6 +54,9 @@ LOGIN_URL = '/accounts/login/'
 
 #AUTH_PROFILE_MODULE = 'tutorspoint.Base_Profile'
 #AUTH_USER_MODEL = 'auth.User'
+MEDIA_ROOT = '/home/shivam/Documents/projects/venv/tutorhub/pic_folder/'
+MEDIA_URL = '/pic_folder/'
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -92,6 +95,11 @@ USE_L10N = True
 
 USE_TZ = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.media',
+    'django.contrib.auth.context_processors.auth',
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
