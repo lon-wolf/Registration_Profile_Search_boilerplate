@@ -2,14 +2,25 @@
 
 {% block content %}
     <form action="" method="get"> {% csrf_token %}
-        {{ filter.form.as_p }}
+        
+        <p><label for="id_classes">Classes:</label>
+        <input id="id_classes" name="classes" type="text" /></p>
+        <p><label for="id_subjects">Subjects:</label>
+        <input id="id_subjects" name="subjects" type="text" /></p>
+        <p><label for="id_location">Locations:</label>
+        <input id="id_location" name="location" type="text" /></p>
+        <p><label for="id_hfee">Max Fee (per hour):</label>
+        <input id="id_hfee" name="hfee" step="any" type="number" /></p>
+        
         <input type="submit" />
     </form>
     {% for obj in filter %}
-    	<pre>Profile details:                    First Name: {{ obj.first_name }}<br />
-        	                    Last Name: {{ obj.last_name }}<br/>
+    	<pre>Profile details:                    Username: {{ obj.user.username }}<br />
+        	                    Teaching Experience: {{ obj.exp }}<br/>
         	                    Qualification: {{ obj.qual }}<br />
-        	                    E-mail: {{ obj.user.email }}<br />
+        	                    Sex: {{ obj.sex }}<br />
+                                    Age: {{ obj.age }}<br />
+                                    Profile Picture: {{ obj.pic }}
         	                    <a href="{% url 'profiles_profile_detail' username=obj.user.username %}">View Full Profile</a>
         </pre>
     {% endfor %}

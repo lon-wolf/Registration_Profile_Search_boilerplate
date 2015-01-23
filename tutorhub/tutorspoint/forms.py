@@ -1,15 +1,20 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.db import models
 from tutorspoint.models import Teacher_Profile, Student_Profile
 from registration.forms import RegistrationFormUniqueEmail
 from registration.models import RegistrationProfile
 from django.utils.translation import ugettext_lazy as _
 import django_filters
 
+SKILL_CHOICES = [('Academics','Academics'), ('Competetions','Competetions'), ('Special_Skills','Special Skills')]
+MODE_CHOICES = [('Online','Online'), ('Tutions_At_Home','Tutions At Home')]
 class Teacher_ProfileForm(RegistrationFormUniqueEmail):
+	skills = forms.MultipleChoiceField(choices=SKILL_CHOICES, widget=forms.CheckboxSelectMultiple(), label = "Category of Teaching Skills")
+	mode = forms.MultipleChoiceField(choices=MODE_CHOICES, widget=forms.CheckboxSelectMultiple(), label = "Mode of Teaching")
 	class Meta:
 		model = Teacher_Profile
-		fields = ('first_name', 'last_name','qual','phone_number',)
+		exclude = ('user','skills','mode',)
 
 
 class Student_ProfileForm(RegistrationFormUniqueEmail):
@@ -19,10 +24,22 @@ class Student_ProfileForm(RegistrationFormUniqueEmail):
 
 
 class TeacherFilter(django_filters.FilterSet):
+	skl = forms.MultipleChoiceField(choices=SKILL_CHOICES, widget=forms.CheckboxSelectMultiple(), label = "Category of Teaching Skills")
+	hfee = django_filters.NumberFilter(lookup_type='lt')
+	filter_overrides = {
+        models.CharField: {
+            'filter_class': django_filters.CharFilter,
+            'extra': lambda f: {
+                'lookup_type': 'icontains',
+            }
+        }
+    }
 	class Meta:
 		model  = Teacher_Profile
-		fields = ('first_name', 'qual',)
+		fields = ('classes', 'subjects','location','hfee',)
 
+
+		
 class StudentFilter(django_filters.FilterSet):
 	class Meta:
 		model  = Student_Profile

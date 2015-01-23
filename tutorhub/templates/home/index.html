@@ -5,9 +5,9 @@
 <h1>Welcome to TUTORS POINT</h1>
 {% if user.is_authenticated %}
 		{% if user.base_profile.user_type == "teacher" %}
-		<h1>Welcome {{ user.teacher_profile.first_name }}!</h1>
+		<h1>Welcome {{ user.teacher_profile.name }}!</h1>
 		{% else %}
-		<h1>Welcome {{ user.student_profile.first_name }}!</h1>
+		<h1>Welcome {{ user.student_profile.name }}!</h1>
 		{% endif %}
 		<p><a href={% url "auth_logout" %}><h3>LOGOUT</h3></a>
 		<pre>

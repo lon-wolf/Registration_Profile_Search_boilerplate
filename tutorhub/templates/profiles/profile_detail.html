@@ -6,23 +6,53 @@
 <div id="content">
 <div class="white-box">
 <div id="details">
-{% if profile.first_name %}
-<p><strong>{% trans "First Name" %}</strong><br />{{ profile.first_name }}</p>
+
+<p><strong>{% trans "Username" %}</strong><br />{{ profile.user.username }}</p>
+
+{% if request.user.username == profile.user.username %}
+	<p><strong>{% trans "Name" %}</strong><br />{{ profile.name }}</p>
+	<p><strong>{% trans "E-mail" %}</strong><br />{{ profile.user.email }}</p>
+	<p><strong>{% trans "Phone Number" %}</strong><br /> {{ profile.phone_number }}</p>
+	<p><strong>{% trans "Address" %}</strong><br /> 
+		{{ profile.address1 }}<br />
+		{{ profile.address2 }}<br />
+		{{ profile.city }}<br />
+		{{ profile.state }}<br />
+		{{ profile.country }}<br />
+		{{ profile.zipcode }}</p>
 {% endif %}
-{% if profile.last_name %}
-<p><strong>{% trans "Last Name" %}</strong><br />{{ profile.last_name }}</p>
-{% endif %}
-{% if profile.user.email %}
-<p><strong>{% trans "Email" %}</strong><br />{{ profile.user.email }}</p>
-{% endif %}
+
 {% if profile.qual %}
 <p><strong>{% trans "Qualification" %}</strong><br /> {{ profile.qual }}</p>
 {% endif %}
-{% if profile.phone_number %}
-	{% if request.user.username == profile.user.username %}
-		<p><strong>{% trans "Phone Number" %}</strong><br /> {{ profile.phone_number }}</a></p>
-	{% endif %}
+{% if profile.pic %}
+<p><strong>{% trans "Profile Picture" %}</strong><br /> {{ profile.pic }}</p>
 {% endif %}
+{% if profile.age %}
+<p><strong>{% trans "Age" %}</strong><br />{{ profile.age }}</p>
+{% endif %}
+{% if profile.sex %}
+<p><strong>{% trans "Sex" %}</strong><br />{{ profile.sex }}</p>
+{% endif %}
+{% if profile.mode %}
+<p><strong>{% trans "Mode of Teaching" %}</strong><br /> {{ profile.mode }}</p>
+{% endif %}
+{% if profile.subjects %}
+<p><strong>{% trans "Preferred Subjects" %}</strong><br /> {{ profile.subjects }}</p>
+{% endif %}
+{% if profile.location %}
+<p><strong>{% trans "Preferred Locations" %}</strong><br />{{ profile.location }}</p>
+{% endif %}
+{% if profile.classes %}
+<p><strong>{% trans "Preferred Classes" %}</strong><br />{{ profile.classes }}</p>
+{% endif %}
+{% if profile.lfee and profile.hfee %}
+<p><strong>{% trans "Fee Range:" %}</strong><br /> {{ profile.lfee }} - {{ profile.hfee }}</p>
+{% endif %}
+{% if profile.skills %}
+<p><strong>{% trans "Teaching Skills" %}</strong><br /> {{ profile.skills }}</p>
+{% endif %}
+
 </div>
 </div>
 </div>
