@@ -2,12 +2,12 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-<h1>Welcome to TUTORS POINT</h1>
+<h1>Profile Manager</h1>
 {% if user.is_authenticated %}
-		{% if user.base_profile.user_type == "teacher" %}
-		<h1>Welcome {{ user.teacher_profile.name }}!</h1>
+		{% if user.base_profile.user_type == "first" %}
+		<h1>Welcome {{ user.first_profile.name }}!</h1>
 		{% else %}
-		<h1>Welcome {{ user.student_profile.name }}!</h1>
+		<h1>Welcome {{ user.second_profile.name }}!</h1>
 		{% endif %}
 		<p><a href={% url "auth_logout" %}><h3>LOGOUT</h3></a>
 		<pre>
@@ -25,12 +25,12 @@
 
 </pre>
 <p>Register here :</p>
-<p>I am <a href="{% url 'registration_register_t' %}">Teacher</a> OR <a href="{% url 'registration_register_s' %}">Student</a>
+<p>I am <a href="{% url 'registration_register_1' %}">First</a> OR <a href="{% url 'registration_register_2' %}">Second</a>
 {% endif %}
 <pre>
 
 </pre>
 <p>Looking For</p>
-<a href="{% url 'teacher_list' %}">Teacher</a> OR <a href="{% url 'student_list' %}">Student</a
+<a href="{% url 'first_list' %}">First</a> OR <a href="{% url 'second_list' %}">Second</a
 
 {% endblock %}

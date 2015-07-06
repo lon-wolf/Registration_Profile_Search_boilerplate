@@ -1,7 +1,7 @@
 from django.contrib import admin
-from tutorspoint.models import Teacher_Profile, Student_Profile, Base_Profile
+from tutorspoint.models import First_Profile, Second_Profile, Base_Profile
 # Register your models here.
-admin.site.register(Teacher_Profile)
-admin.site.register(Student_Profile)
+admin.site.register(First_Profile)
+admin.site.register(Second_Profile)
 admin.site.register(Base_Profile)
 

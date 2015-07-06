@@ -10,7 +10,7 @@ from django.conf import settings
 from django.db.models import get_model
 
 #from django.contrib.auth.models import SiteProfileNotAvailable
-from tutorspoint.models import Teacher_Profile, Student_Profile
+from tutorspoint.models import First_Profile, Second_Profile
 
 
 def get_profile_model():
@@ -38,10 +38,10 @@ def get_profile_form(par = " "):
     ``django.contrib.auth.models.SiteProfileNotAvailable``.
     
     """
-    if par == "teacher":
-        profile_mod = Teacher_Profile
-    if par == "student":
-        profile_mod = Student_Profile
+    if par == "first":
+        profile_mod = First_Profile
+    if par == "second":
+        profile_mod = Second_Profile
     class _ProfileForm(forms.ModelForm):
         class Meta:
             model = profile_mod

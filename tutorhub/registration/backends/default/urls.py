@@ -22,7 +22,7 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
 
-#from tutorspoint.views import Teacher_RegistrationView
+#from tutorspoint.views import First_RegistrationView
 
 from registration.backends.default.views import ActivationView
 from registration.backends.default.views import RegistrationView
@@ -40,7 +40,7 @@ urlpatterns = patterns('',
                            ActivationView.as_view(),
                            name='registration_activate'),
                        #url(r'^register/$',
-                         #  Teacher_RegistrationView.as_view(),
+                         #  First_RegistrationView.as_view(),
                           # name='registration_register'),
                        url(r'^register/complete/$',
                            TemplateView.as_view(template_name='registration/registration_complete.html'),

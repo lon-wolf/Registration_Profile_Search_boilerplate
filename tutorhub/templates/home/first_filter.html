@@ -1,0 +1,28 @@
+{% extends "base/base1.html" %}
+
+{% block content %}
+    <form action="" method="get"> {% csrf_token %}
+        
+        <p><label for="id_classes">Classes:</label>
+        <input id="id_classes" name="classes" type="text" /></p>
+        <p><label for="id_subjects">Subjects:</label>
+        <input id="id_subjects" name="subjects" type="text" /></p>
+        <p><label for="id_location">Locations:</label>
+        <input id="id_location" name="location" type="text" /></p>
+        <p><label for="id_hfee">Max Fee (per hour):</label>
+        <input id="id_hfee" name="hfee" step="any" type="number" /></p>
+        
+        <input type="submit" />
+    </form>
+    {% for obj in filter %}
+    	<pre>Profile details:          
+                                    Username: {{ obj.user.username }}<br />
+        	                    Teaching Experience: {{ obj.exp }}<br/>
+        	                    Qualification: {{ obj.qual }}<br />
+        	                    Sex: {{ obj.sex }}<br />
+                                    Age: {{ obj.age }}<br />
+                                <img src= "/{{ obj.pic }}" alt="Profile Picture">
+        	                    <a href="{% url 'profiles_profile_detail' username=obj.user.username %}">View Full Profile</a>
+        </pre>
+    {% endfor %}
+{% endblock %}

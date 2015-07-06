@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 
 from profiles import utils
 
-from tutorspoint.models import Teacher_Profile
+from tutorspoint.models import First_Profile
 
 def create_profile(request, form_class=None, success_url=None,
                    template_name='profiles/create_profile.html',
@@ -78,10 +78,10 @@ def create_profile(request, form_class=None, success_url=None,
     :template:`profiles/create_profile.html`.
     
     """
-    #form_class = Teacher_ProfileForm
+    #form_class = First_ProfileForm
 
     try:
-        profile_obj = request.user.Teacher_Profile
+        profile_obj = request.user.First_Profile
         return HttpResponseRedirect(reverse('profiles_edit_profile'))
     except ObjectDoesNotExist:
         pass
@@ -180,10 +180,10 @@ def edit_profile(request, form_class=None, success_url=None,
     
     """
     try:
-        if request.user.base_profile.user_type == "teacher":
-            profile_obj = request.user.teacher_profile 
-        if request.user.base_profile.user_type == "student":
-            profile_obj = request.user.student_profile
+        if request.user.base_profile.user_type == "first":
+            profile_obj = request.user.first_profile 
+        if request.user.base_profile.user_type == "second":
+            profile_obj = request.user.second_profile
     except ObjectDoesNotExist:
         return HttpResponseRedirect('home')
     
@@ -275,10 +275,10 @@ def profile_detail(request, username, public_profile_field=None,
     user = get_object_or_404(User, username=username)
     u = User.objects.get(username = username)
     try:
-        if u.base_profile.user_type == "teacher":
-            profile_obj = u.teacher_profile 
-        if u.base_profile.user_type == "student":
-            profile_obj = u.student_profile
+        if u.base_profile.user_type == "first":
+            profile_obj = u.first_profile 
+        if u.base_profile.user_type == "second":
+            profile_obj = u.second_profile
     except ObjectDoesNotExist:
         raise Http404
     if public_profile_field is not None and \

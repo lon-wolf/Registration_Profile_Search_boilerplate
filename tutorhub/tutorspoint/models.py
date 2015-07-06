@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 
-class Teacher_Profile(models.Model):
+class First_Profile(models.Model):
 	user = models.OneToOneField(User)
 	name = models.CharField("Name", max_length = 50, blank = True)
 	age = models.IntegerField("Age")
@@ -32,7 +32,7 @@ class Teacher_Profile(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class Student_Profile(models.Model):
+class Second_Profile(models.Model):
 	user = models.OneToOneField(User)
 	first_name = models.CharField("First Name", max_length = 30, blank = True)
 	last_name = models.CharField("Last Name", max_length = 30, blank = True)
