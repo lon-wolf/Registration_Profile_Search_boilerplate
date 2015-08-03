@@ -7,50 +7,18 @@
 <div class="white-box">
 <div id="details">
 
-<p><strong>{% trans "Username" %}</strong><br />{{ profile.user.username }}</p>
 
-{% if request.user.username == profile.user.username %}
-	<p><strong>{% trans "Name" %}</strong><br />{{ profile.name }}</p>
+
+{% if user.is_authenticated %}
+	<p><strong>{% trans "Name" %}</strong><br />{{ profile.first_name }} {{ profile.last_name }}</p>
 	<p><strong>{% trans "E-mail" %}</strong><br />{{ profile.user.email }}</p>
 	<p><strong>{% trans "Phone Number" %}</strong><br /> {{ profile.phone_number }}</p>
-	<p><strong>{% trans "Address" %}</strong><br /> 
-		{{ profile.address1 }}<br />
-		{{ profile.address2 }}<br />
-		{{ profile.city }}<br />
-		{{ profile.state }}<br />
-		{{ profile.country }}<br />
-		{{ profile.zipcode }}</p>
+{% else %}
+	<p><strong>**Login to see contact details<p><a href={% url "auth_login" %}><h3>LOGIN</h3></a>
 {% endif %}
-
-{% if profile.qual %}
-<p><strong>{% trans "Qualification" %}</strong><br /> {{ profile.qual }}</p>
-{% endif %}
+<p><strong>{% trans "Username" %}</strong><br />{{ profile.user.username }}</p>
 {% if profile.pic %}
-<img src="/{{ profile.pic }}" alt="Profile Picture">
-{% endif %}
-{% if profile.age %}
-<p><strong>{% trans "Age" %}</strong><br />{{ profile.age }}</p>
-{% endif %}
-{% if profile.sex %}
-<p><strong>{% trans "Sex" %}</strong><br />{{ profile.sex }}</p>
-{% endif %}
-{% if profile.mode %}
-<p><strong>{% trans "Mode of Teaching" %}</strong><br /> {{ profile.mode }}</p>
-{% endif %}
-{% if profile.subjects %}
-<p><strong>{% trans "Preferred Subjects" %}</strong><br /> {{ profile.subjects }}</p>
-{% endif %}
-{% if profile.location %}
-<p><strong>{% trans "Preferred Locations" %}</strong><br />{{ profile.location }}</p>
-{% endif %}
-{% if profile.classes %}
-<p><strong>{% trans "Preferred Classes" %}</strong><br />{{ profile.classes }}</p>
-{% endif %}
-{% if profile.lfee and profile.hfee %}
-<p><strong>{% trans "Fee Range:" %}</strong><br /> {{ profile.lfee }} - {{ profile.hfee }}</p>
-{% endif %}
-{% if profile.skills %}
-<p><strong>{% trans "Teaching Skills" %}</strong><br /> {{ profile.skills }}</p>
+<img src="/{{ profile.pic }}" width="200" height="200" alt="Profile Picture">
 {% endif %}
 
 </div>

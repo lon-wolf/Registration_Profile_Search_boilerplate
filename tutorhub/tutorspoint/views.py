@@ -27,16 +27,8 @@ class First_RegistrationView(RegistrationView):
 	def register(self, request, **cleaned_data):
 		new_user= super(First_RegistrationView, self).register(request, **cleaned_data)
 		base_profile = Base_Profile(user = new_user, user_type = "first")
-		skills = ' & '.join(cleaned_data['skills'])
-		mode = ' & '.join(cleaned_data['mode'])
-		new_profile = First_Profile(user = new_user, name = cleaned_data['name'],
-			qual = cleaned_data['qual'], phone_number = cleaned_data['phone_number'],
-			age = cleaned_data['age'], sex = cleaned_data['sex'], address1 = cleaned_data['address1'],
-			address2 = cleaned_data['address2'], zipcode = cleaned_data['zipcode'], city = cleaned_data['city'],
-			country = cleaned_data['country'], state = cleaned_data['state'], skills = skills, mode = mode,
-			location = cleaned_data['location'], classes = cleaned_data['classes'], subjects = cleaned_data['subjects'],
-			exp = cleaned_data['exp'], lfee = cleaned_data['lfee'], hfee = cleaned_data['hfee'],
-			pic = cleaned_data['pic'])
+		new_profile = First_Profile(user = new_user, first_name = cleaned_data['first_name'], last_name = cleaned_data['last_name'],
+		 phone_number = cleaned_data['phone_number'], pic = cleaned_data['pic'])
 		new_profile.save()
 		base_profile.save()
 
@@ -51,7 +43,7 @@ class Second_RegistrationView(RegistrationView):
 		new_user= super(Second_RegistrationView, self).register(request, **cleaned_data)
 		base_profile = Base_Profile(user = new_user, user_type = "second")
 		new_profile = Second_Profile(user = new_user, first_name = cleaned_data['first_name'], last_name = cleaned_data['last_name'],
-			qual = cleaned_data['qual'], phone_number = cleaned_data['phone_number'])
+		 phone_number = cleaned_data['phone_number'], pic = cleaned_data['pic'])
 		new_profile.save()
 		base_profile.save()
 

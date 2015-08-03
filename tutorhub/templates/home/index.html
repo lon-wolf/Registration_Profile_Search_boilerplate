@@ -2,12 +2,11 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-<h1>Profile Manager</h1>
 {% if user.is_authenticated %}
 		{% if user.base_profile.user_type == "first" %}
 		<h1>Welcome {{ user.first_profile.name }}!</h1>
 		{% else %}
-		<h1>Welcome {{ user.second_profile.name }}!</h1>
+		
 		{% endif %}
 		<p><a href={% url "auth_logout" %}><h3>LOGOUT</h3></a>
 		<pre>
@@ -21,16 +20,10 @@
 		</ul>
 {% else %}
 <p><a href={% url "auth_login" %}><h3>LOGIN</h3></a>
-<pre>
-
-</pre>
-<p>Register here :</p>
-<p>I am <a href="{% url 'registration_register_1' %}">First</a> OR <a href="{% url 'registration_register_2' %}">Second</a>
+<h1>Register here :</h1>
+<p><a href="{% url 'registration_register_1' %}">First</a> OR <a href="{% url 'registration_register_2' %}">Second</a>
 {% endif %}
-<pre>
-
-</pre>
-<p>Looking For</p>
+<h1>Looking For :</h1>
 <a href="{% url 'first_list' %}">First</a> OR <a href="{% url 'second_list' %}">Second</a
 
 {% endblock %}

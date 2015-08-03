@@ -6,11 +6,11 @@
         <input type="submit" />
     </form>
     {% for obj in filter %}
-        <pre>Profile details:                    First Name: {{ obj.first_name }}<br />
+        Profile details:                    First Name: {{ obj.first_name }}<br />
         	                    Last Name: {{ obj.last_name }}<br/>
-        	                    Qualification: {{ obj.qual }}<br />
-        	                    E-mail: {{ obj.user.email }}<br />
+                                    Username: {{ obj.user.username }}<br />
+                                <img src= "/{{ obj.pic }}" width="200" height="200" alt="Profile Picture">
         	                    <a href="{% url 'profiles_profile_detail' username=obj.user.username %}">View Full Profile</a>
-        </pre>
+    
     {% endfor %}
 {% endblock %}

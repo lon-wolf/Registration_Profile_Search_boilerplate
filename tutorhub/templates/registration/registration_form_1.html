@@ -11,61 +11,10 @@
 
 {% block content %}
 <div class="formBlock">
+
   <form action="{% url 'registration_register_1' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-  	<h4>Account Details: </h4>
-  	<p class="required"><label for="id_username">Username:</label>
-  	<input id="id_username" maxlength="30" name="username" type="text" /></p>
-	<p class="required"><label for="id_email">E-mail:</label>
-	<input id="id_email" name="email" type="email" /></p>
-	<p class="required"><label for="id_password1">Password:</label>
-	<input id="id_password1" name="password1" type="password" /></p>
-	<p class="required"><label for="id_password2">Password (again):</label>
-	<input id="id_password2" name="password2" type="password" /></p>
-	<h4>Profile Details: </h4>
-   	<p><label for="id_name">Name:</label>
-   	<input id="id_name" maxlength="50" name="name" type="text" /></p>
-	<p class="required"><label for="id_age">Age:</label>
-	<input id="id_age" name="age" type="number" /></p>
-	<p><label for="id_sex">Sex:</label>
-	<input id="id_sex" maxlength="10" name="sex" type="text" /></p>
-	<p><label for="id_address1">Address Line 1:</label>
-	<input id="id_address1" maxlength="100" name="address1" type="text" /></p>
-	<p><label for="id_address2">Address Line 2:</label>
-	<input id="id_address2" maxlength="100" name="address2" type="text" /></p>
-	<p><label for="id_city">City:</label>
-	<input id="id_city" maxlength="100" name="city" type="text" /></p>
-	<p><label for="id_state">State:</label>
-	<input id="id_state" maxlength="100" name="state" type="text" /></p>
-	<p><label for="id_country">Country:</label>
-	<input id="id_country" maxlength="100" name="country" type="text" /></p>
-	<p><label for="id_zipcode">ZIP code:</label>
-	<input id="id_zipcode" maxlength="6" name="zipcode" type="text" /></p>
-	<p><label for="id_qual">Qualification:</label>
-	<input id="id_qual" maxlength="30" name="qual" type="text" /></p>
-	<p class="required"><label for="id_phone_number">Phone Number:</label>
-	<input id="id_phone_number" maxlength="15" name="phone_number" type="text" placeholder = "+999999999" /></p>
-	<p class="required"><label for="id_mode_0">Mode of Teaching:</label> <ul id="id_mode">
-	<li><label for="id_mode_0"><input id="id_mode_0" name="mode" type="checkbox" value="Online" /> Online</label></li>
-	<li><label for="id_mode_1"><input id="id_mode_1" name="mode" type="checkbox" value="Tutions_At_Home" /> Tutions At Home</label></li>
-	</ul></p>
-	<p><label for="id_location">Preferred Locations:</label>
-	<input id="id_location" maxlength="100" name="location" type="text" placeholder = "blank if online mode" /></p>
-	<p><label for="id_classes">Preferred Classes:</label>
-	<input id="id_classes" maxlength="50" name="classes" type="text" /></p>
-	<p><label for="id_subjects">Preferred Subjects:</label>
-	<input id="id_subjects" maxlength="100" name="subjects" type="text" /></p>
-	<p>Fee Range: </p>
-	<p><input id="id_lfee" name="lfee" type="number" /> - <input id="id_hfee" name="hfee" type="number" /> Per Hour</p>
-	<p><label for="id_exp">Teaching Experience:</label>
-	<input id="id_exp" maxlength="30" name="exp" type="text" placeholder = "e.g 2-3 yrs" /></p>
-	<p class="required"><label for="id_skills_0">Category of Teaching Skills:</label> <ul id="id_skills">
-	<li><label for="id_skills_0"><input id="id_skills_0" name="skills" type="checkbox" value="Academics" /> Academics</label></li>
-	<li><label for="id_skills_1"><input id="id_skills_1" name="skills" type="checkbox" value="Competetions" /> Competetions</label></li>
-	<li><label for="id_skills_2"><input id="id_skills_2" name="skills" type="checkbox" value="Special_Skills" /> Special Skills</label></li>
-	</ul></p>
-	<p class="required"><label for="id_pic">Pic:</label> <input id="id_pic" name="pic" type="file" /></p>
-	<p class="required"><label for="id_tos">I have read and agree to the Terms of Service:</label>
-	<input id="id_tos" name="tos" type="checkbox" /></p>
+  
+	{{ form.as_p }}
 	
 	
   <p class="submit"><button type="submit" class="updateButton">Register</button></p>
